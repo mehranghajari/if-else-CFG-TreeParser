@@ -5,7 +5,7 @@ token_expressions=[(r'.+;',"COMMAND")
 ,(r'[ \n\t]+',None)
 ,(r'#[^\n]*',None)
 ,(r'IF',"IF")
-,(r'THEN',"THEN")
+,(r'THEN',"THEN")s
 ,(r'ELSE',"ELSE")
 ,(r'END',"END")
 ,(r"\w+(==|>|<|<=|>=)\w+","COND")
@@ -26,9 +26,6 @@ IF a>b THEN
         END
     END
 b=12;
-asdakjsd;
-asdnq;
-asdn;
 """
 
 class Token:

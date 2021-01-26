@@ -7,5 +7,8 @@ if __name__ == "__main__":
     root = Node(tokens, Tag.STATEMENT)
     tree  = Tree(root)
     tree.parse()
-
+    print("pre:")
+    tree.root.pre_order()
+    print("post:")
+    tree.root.post_order()
     
