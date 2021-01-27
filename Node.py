@@ -1,5 +1,4 @@
 from enum import Enum
-
 class Tag(Enum):
     STATEMENT = 1
     TERMINAL  = 2
@@ -83,11 +82,7 @@ class Node:
             i+=1
         return self.body[j:i],i
 
-    def pre_order(self):
-        print(self.body)
+    def add_node(self, graph,i):
+        graph.node(str(i),'yoyo')
         for child in self.children:
-            pre_order(child)
-    def post_order(self):
-        for i in range(len(self.childern),0,-1):
-            post_order(self.children[i])
-        print(self.n)
+            child.add_node(graph,i+1)

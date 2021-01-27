@@ -5,7 +5,7 @@ token_expressions=[(r'.+;',"COMMAND")
 ,(r'[ \n\t]+',None)
 ,(r'#[^\n]*',None)
 ,(r'IF',"IF")
-,(r'THEN',"THEN")s
+,(r'THEN',"THEN")
 ,(r'ELSE',"ELSE")
 ,(r'END',"END")
 ,(r"\w+(==|>|<|<=|>=)\w+","COND")
