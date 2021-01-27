@@ -35,20 +35,20 @@ class Node:
                     child  = Node(body=[token.text], tag = Tag.TERMINAL)
                     self.children.append(child)
                 else:
-                    stmt, i= self.endOfStatement(i)
+                    stmt, i = self.endOfStatement(i)
                     child = Node(body=stmt, tag=Tag.STATEMENT)
-                    self.children.append(child)
                     child.parse()
-                    if i != len(self.body)-1:
-                        token=self.body[i]
-                        child = Node(body=[token.text],tag =Tag.TERMINAL)
+                    self.children.append(child)
+                    if i < len(self.body)-1:
+                        token = self.body[i]
+                        self.children.append(Node(body=[token.text],tag=Tag.TERMINAL))
                         i+=1
-                        stmt, i= self.endOfStatement(i)
-                        child = Node(body=stmt, tag=Tag.STATEMENT)
-                        self.children.append(child)
-                        child.parse()
+                        stmt, i = self.endOfStatement(i)
+                        newChild = Node(body=stmt,tag=Tag.STATEMENT)
+                        self.children.append(newChild)
+                        newChild.parse()
+                        
                 i+=1
-
     
     def create_if_statement_body(self, i):
         c = 0
@@ -82,7 +82,34 @@ class Node:
             i+=1
         return self.body[j:i],i
 
+
+
+
     def add_node(self, graph,i):
-        graph.node(str(i),'yoyo')
+        j=i
+        if self.tag == Tag.TERMINAL:
+            graph.node(str(i),str(self.body))
+        else:
+            graph.node(str(i),str(self.tag))
+
         for child in self.children:
-            child.add_node(graph,i+1)
+            i+=len(self.children)+100
+            child.add_node(graph,i+10)
+            self.add_edge(graph,j,i+10)
+
+    def add_edge(self, graph,index,child_index):
+        graph.edge(str(index),str(child_index))
+
+    def print_non_terminals(self):
+        if(self.tag!=Tag.TERMINAL):
+            print()
+            print(self.body)
+        for child in self.children:
+            child.print_non_terminals()
+
+    def print_terminals(self):
+        if(self.tag==Tag.TERMINAL):
+            print()
+            print(self.body)
+        for child in self.children:
+            child.print_terminals()

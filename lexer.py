@@ -8,24 +8,53 @@ token_expressions=[(r'.+;',"COMMAND")
 ,(r'THEN',"THEN")
 ,(r'ELSE',"ELSE")
 ,(r'END',"END")
-,(r"\w+(==|>|<|<=|>=)\w+","COND")
+,(r"\w+ *(==|>|<|<=|>=) *\w+","COND")
 ]
 
 src = """
 a=2;
 b=3;
 c=4;
-IF a>b THEN
-        total := total + price * quantity;
-        tax := price * 0.05;
-        ELSE IF a<b THEN
-            total = total - price;
-            tax--;
-        ELSE
-            a++;
+IF a>1 THEN
+    IF a>2 THEN
+        IF a>3 THEN
+            c--;
+            c++;
+            IF a>4 THEN
+                a--;
+                b--;
+                IF a>5 THEN
+                a-5;
+                a-5;
+                ELSE
+                a+5;
+                a+5;
+                END
+                a-4;
+                a-4;
+                ELSE
+                a+4;
+                a+4;
+            END
+            a-3;
+            a+3;
+            ELSE
+            a-3;
+            a+3;
+        END
+        a-2;
+        ELSE IF s==52 THEN
+        a+2;
         END
     END
-b=12;
+    a-1;
+    ELSE
+    a+1;
+END
+a;
+IF b>5 THEN
+b;
+END
 """
 
 class Token:
