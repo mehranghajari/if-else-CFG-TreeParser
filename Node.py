@@ -107,3 +107,11 @@ class Node:
             child.add_node(graph)
             self.add_edge(graph,self.i,child.i)
         
+    
+    def print(self):
+        if(self.tag == Tag.TERMINAL):
+            print(self.body[0], end=" ")
+        else:
+            print(self.tag.name)
+        for child in self.children:
+            child.print()

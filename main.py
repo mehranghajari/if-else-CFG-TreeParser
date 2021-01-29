@@ -9,6 +9,7 @@ if __name__ == "__main__":
         root = Node(tokens, Tag.STATEMENT)
         tree  = Tree(root)
         tree.parse()
+        tree.print()
     # to enable graphics uncomment these:
     # you must have graphviz and the graphviz python package installed 
         # from graphviz import Digraph,Graph
