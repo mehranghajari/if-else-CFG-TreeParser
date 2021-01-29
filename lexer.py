@@ -32,9 +32,10 @@ IF a>1 THEN
                 END
                 a-4;
                 a-4;
-                ELSE
+                ELSE IF space == bishuuuur THEN
                 a+4;
                 a+4;
+                END
             END
             a-3;
             a+3;
@@ -52,10 +53,24 @@ IF a>1 THEN
     a+1;
 END
 a;
-IF b>5 THEN
-b;
+IF baaabuuuuu>5 THEN
+KHAAAAAAAAAAK;
 END
 """
+
+# src = """
+# SHORUU;
+# IF a>b THEN
+# bozorgtar;
+# END
+# IF b>a THEN
+# kooochiktar;
+# END
+# PAAYAAN;
+# IF c>cc THEN
+# cccc;
+# END
+# """
 
 class Token:
     def __init__(self,text, tag):

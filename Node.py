@@ -1,4 +1,5 @@
 from enum import Enum
+from collections import deque as queue
 class Tag(Enum):
     STATEMENT = 1
     TERMINAL  = 2
@@ -8,6 +9,7 @@ class Node:
     def __init__(self,body=[], tag=None):
         self.body = body
         self.tag = tag
+        self.i = 0
         self.children = []
 
     def is_leaf(self):
@@ -15,45 +17,53 @@ class Node:
 
     def parse(self):
         if(self.tag == Tag.STATEMENT):
-            i=0
-            while  i < len(self.body):
-                token = self.body[i]
-                if token.tag == 'IF'  :
-                    if_stmt , j = self.create_if_statement_body(i+1)
-                    child = Node(body = (if_stmt),tag = Tag.IF_STATEMENT)
-                    self.children.append(child)
-                    i=j
-                    child.parse()
-                elif token.tag == 'COMMAND':
-                    self.children.append(Node(body=[token.text],tag=Tag.TERMINAL))
-                i+=1
+            if not self.body :
+                return    
+            token = self.body[0]
+            if token.tag == 'IF'  :
+                if_stmt , j = self.create_if_statement_body(1)
+                self.add_child(if_stmt,Tag.IF_STATEMENT,True)
+                if not self.body[j:]:
+                    return
+                self.add_child(self.body[j:],Tag.STATEMENT,True)
+
+            elif token.tag == 'COMMAND':
+                self.add_child([token.text],Tag.TERMINAL,False)
+                if not self.body[1:]:
+                    return
+                self.add_child(self.body[1:],Tag.STATEMENT,True)
+            
+            else:
+                print("YOYO")
+                print(self.body)
+                next_stmt = self.body[1:]
+                if not next_stmt:
+                    self.add_child(['ε'],Tag.TERMINAL,False)
+                else:
+                    self.add_child(self.body[1:],Tag.STATEMENT,True)
+
         elif(self.tag == Tag.IF_STATEMENT):
             i=0
             while i < len(self.body):
                 token = self.body[i]
                 if i < 3:
-                    child  = Node(body=[token.text], tag = Tag.TERMINAL)
-                    self.children.append(child)
+                    self.add_child([token.text],Tag.TERMINAL,False)
                 else:
                     stmt, i = self.endOfStatement(i)
-                    child = Node(body=stmt, tag=Tag.STATEMENT)
-                    child.parse()
-                    self.children.append(child)
+                    self.add_child(stmt,Tag.STATEMENT,True)
                     if i < len(self.body)-1:
                         token = self.body[i]
-                        self.children.append(Node(body=[token.text],tag=Tag.TERMINAL))
+                        self.add_child([token.text],Tag.TERMINAL)
                         i+=1
                         stmt, i = self.endOfStatement(i)
-                        newChild = Node(body=stmt,tag=Tag.STATEMENT)
-                        self.children.append(newChild)
-                        newChild.parse()
+                        self.add_child(stmt,Tag.STATEMENT,True)
                         
                 i+=1
+
     
     def create_if_statement_body(self, i):
         c = 0
         j = i
-        counter=0
         while i < self.body.__len__() :
             if self.body[i].tag == "IF":
                 c+=1
@@ -68,7 +78,6 @@ class Node:
     def endOfStatement(self, i):
         c = 0
         j = i
-        counter=0
         while i < self.body.__len__() :
             if self.body[i].tag == "IF":
                 c+=1
@@ -84,32 +93,12 @@ class Node:
 
 
 
-
-    def add_node(self, graph,i):
-        j=i
-        if self.tag == Tag.TERMINAL:
-            graph.node(str(i),str(self.body))
-        else:
-            graph.node(str(i),str(self.tag))
-
-        for child in self.children:
-            i+=len(self.children)+100
-            child.add_node(graph,i+10)
-            self.add_edge(graph,j,i+10)
-
     def add_edge(self, graph,index,child_index):
         graph.edge(str(index),str(child_index))
 
-    def print_non_terminals(self):
-        if(self.tag!=Tag.TERMINAL):
-            print()
-            print(self.body)
-        for child in self.children:
-            child.print_non_terminals()
-
-    def print_terminals(self):
-        if(self.tag==Tag.TERMINAL):
-            print()
-            print(self.body)
-        for child in self.children:
-            child.print_terminals()
+    def add_child(self, body, tag, parse:bool = False):
+        child = Node(body,tag)
+        
+        self.children.append(child)
+        child.parse()
+        print(body)
