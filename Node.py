@@ -13,9 +13,6 @@ class Node:
         self.i = 0
         self.children = []
 
-    def is_leaf(self):
-        return self.children is [] 
-
     def parse(self):
         if(self.tag == Tag.STATEMENT):
             if not self.body :
