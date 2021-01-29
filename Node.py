@@ -6,6 +6,7 @@ class Tag(Enum):
     IF_STATEMENT = 3 
 
 class Node:
+    index = 0
     def __init__(self,body=[], tag=None):
         self.body = body
         self.tag = tag
@@ -34,8 +35,6 @@ class Node:
                 self.add_child(self.body[1:],Tag.STATEMENT,True)
             
             else:
-                print("YOYO")
-                print(self.body)
                 next_stmt = self.body[1:]
                 if not next_stmt:
                     self.add_child(['ε'],Tag.TERMINAL,False)
@@ -51,7 +50,7 @@ class Node:
                 else:
                     stmt, i = self.endOfStatement(i)
                     self.add_child(stmt,Tag.STATEMENT,True)
-                    if i < len(self.body)-1:
+                    if i < len(self.body):
                         token = self.body[i]
                         self.add_child([token.text],Tag.TERMINAL)
                         i+=1
@@ -59,7 +58,6 @@ class Node:
                         self.add_child(stmt,Tag.STATEMENT,True)
                         
                 i+=1
-
     
     def create_if_statement_body(self, i):
         c = 0
@@ -73,7 +71,7 @@ class Node:
                 else:
                     break
             i+=1
-        return self.body[j-1:i+1], i
+        return self.body[j-1:i+1], i+1
     
     def endOfStatement(self, i):
         c = 0
@@ -98,7 +96,17 @@ class Node:
 
     def add_child(self, body, tag, parse:bool = False):
         child = Node(body,tag)
-        
+        Node.index+=1
+        child.i = Node.index
         self.children.append(child)
         child.parse()
-        print(body)
+
+    def add_node(self,graph):
+        if self.tag == Tag.TERMINAL:
+            graph.node(str(self.i),str(self.body[0]))
+        else:
+            graph.node(str(self.i),str(self.tag.name))
+        for child in self.children:
+            child.add_node(graph)
+            self.add_edge(graph,self.i,child.i)
+        

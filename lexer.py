@@ -18,32 +18,33 @@ c=4;
 IF a>1 THEN
     IF a>2 THEN
         IF a>3 THEN
-            c--;
-            c++;
+            salsabil+sagsibil;
             IF a>4 THEN
                 a--;
                 b--;
-                IF a>5 THEN
-                a-5;
-                a-5;
-                ELSE
-                a+5;
-                a+5;
-                END
+                    IF a>5 THEN
+                    a-5;
+                    a-5;
+                    ELSE
+                    a+5;
+                    a+5;
+                    END
                 a-4;
                 a-4;
-                ELSE IF space == bishuuuur THEN
-                a+4;
-                a+4;
-                END
+                    ELSE IF space == bishuuuur THEN
+                    a+4;
+                    a+4;
+                    END
+                ablabloo;
             END
             a-3;
             a+3;
             ELSE
             a-3;
             a+3;
-        END
+
         a-2;
+        b-2;
         ELSE IF s==52 THEN
         a+2;
         END
@@ -62,6 +63,10 @@ END
 # SHORUU;
 # IF a>b THEN
 # bozorgtar;
+# IF a>=b THEN
+# bozorgtarmosavi;
+# END
+# ccc;
 # END
 # IF b>a THEN
 # kooochiktar;
@@ -71,6 +76,7 @@ END
 # cccc;
 # END
 # """
+
 
 class Token:
     def __init__(self,text, tag):

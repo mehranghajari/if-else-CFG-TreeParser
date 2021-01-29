@@ -1,0 +1,177 @@
+digraph G {
+	1 [label=STATEMENT]
+	113 [label="a=2;"]
+	1 -> 113
+	215 [label=STATEMENT]
+	327 [label="b=3;"]
+	215 -> 327
+	429 [label=STATEMENT]
+	541 [label="c=4;"]
+	429 -> 541
+	643 [label=STATEMENT]
+	755 [label=IF_STATEMENT]
+	871 [label=IF]
+	755 -> 871
+	977 [label="a>1"]
+	755 -> 977
+	1083 [label=THEN]
+	755 -> 1083
+	1189 [label=STATEMENT]
+	1301 [label=IF_STATEMENT]
+	1417 [label=IF]
+	1301 -> 1417
+	1523 [label="a>2"]
+	1301 -> 1523
+	1629 [label=THEN]
+	1301 -> 1629
+	1735 [label=STATEMENT]
+	1847 [label=IF_STATEMENT]
+	1963 [label=IF]
+	1847 -> 1963
+	2069 [label="a>3"]
+	1847 -> 2069
+	2175 [label=THEN]
+	1847 -> 2175
+	2281 [label=STATEMENT]
+	2393 [label="c--;"]
+	2281 -> 2393
+	2495 [label=STATEMENT]
+	2607 [label="c++;"]
+	2495 -> 2607
+	2709 [label=STATEMENT]
+	2821 [label=IF_STATEMENT]
+	2937 [label=IF]
+	2821 -> 2937
+	3043 [label="a>4"]
+	2821 -> 3043
+	3149 [label=THEN]
+	2821 -> 3149
+	3255 [label=STATEMENT]
+	3367 [label="a--;"]
+	3255 -> 3367
+	3469 [label=STATEMENT]
+	3581 [label="b--;"]
+	3469 -> 3581
+	3683 [label=STATEMENT]
+	3795 [label=IF_STATEMENT]
+	3911 [label=IF]
+	3795 -> 3911
+	4017 [label="a>5"]
+	3795 -> 4017
+	4123 [label=THEN]
+	3795 -> 4123
+	4229 [label=STATEMENT]
+	4341 [label="a-5;"]
+	4229 -> 4341
+	4443 [label=STATEMENT]
+	4554 [label="a-5;"]
+	4443 -> 4554
+	4229 -> 4443
+	3795 -> 4229
+	4335 [label=ELSE]
+	3795 -> 4335
+	4441 [label=STATEMENT]
+	4553 [label="a+5;"]
+	4441 -> 4553
+	4655 [label=STATEMENT]
+	4766 [label="a+5;"]
+	4655 -> 4766
+	4441 -> 4655
+	3795 -> 4441
+	3683 -> 3795
+	3897 [label=STATEMENT]
+	4008 [label=" "]
+	3897 -> 4008
+	3683 -> 3897
+	3469 -> 3683
+	3255 -> 3469
+	2821 -> 3255
+	3361 [label=ELSE]
+	2821 -> 3361
+	3467 [label=STATEMENT]
+	3579 [label=IF_STATEMENT]
+	3693 [label=IF]
+	3579 -> 3693
+	3797 [label="space == bishuuuur"]
+	3579 -> 3797
+	3901 [label=THEN]
+	3579 -> 3901
+	4005 [label=STATEMENT]
+	4117 [label="a+4;"]
+	4005 -> 4117
+	4219 [label=STATEMENT]
+	4330 [label="a+4;"]
+	4219 -> 4330
+	4005 -> 4219
+	3579 -> 4005
+	3467 -> 3579
+	3681 [label=STATEMENT]
+	3792 [label=" "]
+	3681 -> 3792
+	3467 -> 3681
+	2821 -> 3467
+	2709 -> 2821
+	2923 [label=STATEMENT]
+	3034 [label=" "]
+	2923 -> 3034
+	2709 -> 2923
+	2495 -> 2709
+	2281 -> 2495
+	1847 -> 2281
+	2387 [label=ELSE]
+	1847 -> 2387
+	2493 [label=STATEMENT]
+	2605 [label="a-3;"]
+	2493 -> 2605
+	2707 [label=STATEMENT]
+	2818 [label="a+3;"]
+	2707 -> 2818
+	2493 -> 2707
+	1847 -> 2493
+	1735 -> 1847
+	1949 [label=STATEMENT]
+	2060 [label=" "]
+	1949 -> 2060
+	1735 -> 1949
+	1301 -> 1735
+	1841 [label=ELSE]
+	1301 -> 1841
+	1947 [label=STATEMENT]
+	2059 [label=IF_STATEMENT]
+	2173 [label=IF]
+	2059 -> 2173
+	2277 [label="s==52"]
+	2059 -> 2277
+	2381 [label=THEN]
+	2059 -> 2381
+	2485 [label=STATEMENT]
+	2596 [label="a+2;"]
+	2485 -> 2596
+	2059 -> 2485
+	1947 -> 2059
+	2161 [label=STATEMENT]
+	2272 [label=" "]
+	2161 -> 2272
+	1947 -> 2161
+	1301 -> 1947
+	1189 -> 1301
+	1403 [label=STATEMENT]
+	1514 [label=" "]
+	1403 -> 1514
+	1189 -> 1403
+	755 -> 1189
+	1295 [label=ELSE]
+	755 -> 1295
+	1401 [label=STATEMENT]
+	1512 [label="a+1;"]
+	1401 -> 1512
+	755 -> 1401
+	643 -> 755
+	857 [label=STATEMENT]
+	968 [label=" "]
+	857 -> 968
+	643 -> 857
+	429 -> 643
+	215 -> 429
+	1 -> 215
+}

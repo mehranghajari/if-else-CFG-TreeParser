@@ -9,8 +9,8 @@ class Tree:
     def parse(self):
         self.root.parse()
     
-    def insert(self):
-        self.root.insert()
+    # def insert(self):
+    #     self.root.insert()
 
     def add_graph(self,graph,i):
         self.root.add_graph(graph,i)
